@@ -1,0 +1,1338 @@
+ #: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<CustButton@Button>:
+	font_size: 32	
+	
+<PopupBox>:
+
+	oreintation: 'vertical'
+
+	BoxLayout:
+
+		Label:
+
+			text: 'Channel 1'
+
+			font_size: 25
+
+		Label:
+			text: 'Channel 2'
+
+			font_size: 25
+
+		Label:
+
+			text: 'Channel 3'
+			font_size: 25
+
+		Label:
+
+			text: 'Channel 4'
+
+			font_size: 25
+
+	BoxLayout:
+
+	BoxLayout:
+
+		Button:
+
+			text: 'Run Quick Read'
+
+			on_press: root.quick_read()
+
+		Button:
+
+			text: 'Close'
+
+			on_press: root.popup.dismiss()
+			
+<CustomPopup>:
+	
+	id: test
+	title: "Title"
+	#on_parent: if self.parent == main: self.parent.remove_widget(self)
+	size_hint: 0.75, 0.75
+	BoxLayout:
+		oreintation: 'vertical'
+
+		BoxLayout:
+
+			Label:
+
+				text: 'Channel 1'
+
+				font_size: 25
+
+			Label:
+				text: 'Channel 2'
+
+				font_size: 25
+
+			Label:
+
+				text: 'Channel 3'
+				font_size: 25
+
+			Label:
+
+				text: 'Channel 4'
+
+				font_size: 25
+
+		BoxLayout:
+
+
+		BoxLayout:
+
+			Button:
+
+				text: 'Run Quick Read'
+
+				on_press: root.quick_read()
+
+			Button:
+
+				text: 'Close'
+
+				on_press: root.popup.dismiss()
+
+		Button:
+			size_hint:  (1, 0.2)
+			text:       "Dismiss"
+			on_release: my_popup.dismiss()
+
+
+	
+
+<Button>:
+	font_size: 25
+		
+<Channel_1>:	
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'left': 1,'top':1}
+		#size_hint: 1,1
+		Image:
+			id: image
+			pos_hint: {'top':1}
+			size_hint: 1,0.9
+			canvas.before:
+				Color:
+					rgba: 0, 0, 0, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			source: 'Ch0_Graphs/Ch0_AVG_7.png'
+			mag_filter: 'nearest'
+	
+		BoxLayout:
+			#pos_hint: {'bottom':1}
+			size_hint: 1,0.1
+			Button:
+				text: "1 Week"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_7.png'
+			Button:
+				text: "1 Month"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_31.png'
+			Button:
+				text: "3 Months"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_93.png'
+			Button:
+				text: "6 Months"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_186.png'
+					
+<Channel_2>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+<Channel_3>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+<Channel_4>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+Channel_Tabs:
+
+	canvas.before:
+        Color:
+            rgba: 0.15, 0.15, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+			
+    background_color: (0.2, 0.2, 0.2, 0)
+	
+	popup: my_popup
+	loading_popup: load_pop
+
+	Popup:
+		id: my_popup
+		title: "Quick Read"
+		title_size: 30
+		title_align: 'center'
+		size_hint: .75, .75
+		pos_hint: {'center_x':0.5,'center_y': 0.5}
+		auto_dismiss: True
+		GridLayout:
+			rows: 4
+			padding: 10
+			spacing: 1
+			#oreintation: 'vertical'
+
+			BoxLayout:
+				Label:
+					text: 'Channel 1'
+					font_size: 25
+
+				Label:
+					text: 'Channel 2'
+					font_size: 25
+
+				Label:
+					text: 'Channel 3'
+					font_size: 25
+
+				Label:
+					text: 'Channel 4'
+					font_size: 25
+
+			BoxLayout:
+				Label:
+					id: lbl_0
+					text: str(root.ch1_val)
+					font_size: 25
+
+				Label:
+					id: lbl_1
+					text: str(root.ch2_val)
+					font_size: 25
+
+				Label:
+					id: lbl_2
+					text: str(root.ch3_val)
+					font_size: 25
+
+				Label:
+					id: lbl_3
+					text: str(root.ch4_val)
+					font_size: 25
+
+			BoxLayout:
+				
+				BoxLayout:
+					canvas.before:
+						Color:
+							rgba: root.ch1_color
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							
+					Label:
+						id: lbl_4
+						text: root.ch1_rating
+						outline_width: 2
+						#outline_color: (0,0,0)
+						#color: (0,0,0)
+						padding: 1,1
+						font_size: 20
+				
+				BoxLayout:
+					canvas.before:
+						Color:
+							rgba: root.ch2_color
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							
+					Label:
+						id: lbl_5
+						text: root.ch2_rating
+						outline_width: 2
+						#outline_color: (0,0,0)
+						#color: (0,0,0)
+						padding: 1,1
+						font_size: 20
+				
+				BoxLayout:
+					canvas.before:
+						Color:
+							rgba: root.ch3_color
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							
+					Label:
+						id: lbl_6
+						text: root.ch3_rating
+						outline_width: 2
+						#outline_color: (0,0,0)
+						#color: (0,0,0)
+						padding: 1,1
+						font_size: 20
+				
+				BoxLayout:
+					canvas.before:
+						Color:
+							rgba: root.ch4_color
+						Rectangle:
+							pos: self.pos
+							size: self.size
+							
+					Label:
+						id: lbl_7
+						text: root.ch4_rating
+						outline_width: 2
+						#outline_color: (0,0,0)
+						#color: (0,0,0)
+						padding: 1,1
+						font_size: 20
+			
+			BoxLayout:
+
+				Button:
+					text: 'Run Quick Read'
+					on_press: 
+						load_pop.open()
+						#root.quick_read()
+						#root.loading_popup.dismiss()
+						root.prog_bar_start()
+						load_pop.dismiss()
+				
+				Button:
+					text: 'Close'
+					on_press: root.popup.dismiss()
+					
+	Popup:
+		id: load_pop
+		title: "Performing Quick Read..."
+		title_size: 30
+		title_align: 'center'
+		size_hint: .40, .15
+		pos_hint: {'center_x':0.5,'center_y': 0.5}
+		auto_dismiss: False
+		#on_open: root.quick_read()
+		
+		
+		canvas.before:
+			Color:
+				rgba: (0.49,0.73,0.91,1)
+			Rectangle:
+				pos: self.pos
+				size: self.size
+		
+		#ProgressBar:
+		#	id: progbar
+		#	min: 0
+		#	max: 60
+		#	value: 0 #int(root.current_val)
+	
+	TabbedPanelItem:
+		text: "Channel 1"
+		
+		Graph_Tabs:	
+			background_color: (0.2, 0.2, 0.2, 0)
+			
+			TabbedPanelItem:
+				text: "Average"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_0
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_AVG_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_186.png'
+								
+			TabbedPanelItem:
+				text: "Looseness"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_1
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_LOOSE_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_186.png'
+				
+			TabbedPanelItem:
+				text: "Misalignment"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_2
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_MISA_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_186.png'
+				
+			TabbedPanelItem:
+				text: "Bearing"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_3
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_BEAR_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_186.png'
+				
+			TabbedPanelItem:
+				text: "Gears"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_4
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_GEARS_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_186.png'
+
+	TabbedPanelItem:
+		text: "Channel 2"
+		
+		Graph_Tabs:	
+			background_color: (0.2, 0.2, 0.2, 0)
+			
+			TabbedPanelItem:
+				text: "Average"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_5
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch1_Graphs/Ch1_AVG_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_5.source = 'Ch1_Graphs/Ch1_AVG_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_5.source = 'Ch1_Graphs/Ch1_AVG_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_5.source = 'Ch1_Graphs/Ch1_AVG_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_5.source = 'Ch1_Graphs/Ch1_AVG_186.png'
+								
+			TabbedPanelItem:
+				text: "Looseness"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_6
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch1_Graphs/Ch1_LOOSE_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_6.source = 'Ch1_Graphs/Ch1_LOOSE_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_6.source = 'Ch1_Graphs/Ch1_LOOSE_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_6.source = 'Ch1_Graphs/Ch1_LOOSE_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_6.source = 'Ch1_Graphs/Ch1_LOOSE_186.png'
+				
+			TabbedPanelItem:
+				text: "Misalignment"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_7
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch1_Graphs/Ch1_MISA_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_7.source = 'Ch1_Graphs/Ch1_MISA_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_7.source = 'Ch1_Graphs/Ch1_MISA_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_7.source = 'Ch1_Graphs/Ch1_MISA_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_7.source = 'Ch1_Graphs/Ch1_MISA_186.png'
+				
+			TabbedPanelItem:
+				text: "Bearing"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_8
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch1_Graphs/Ch1_BEAR_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_8.source = 'Ch1_Graphs/Ch1_BEAR_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_8.source = 'Ch1_Graphs/Ch1_BEAR_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_8.source = 'Ch1_Graphs/Ch1_BEAR_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_8.source = 'Ch1_Graphs/Ch1_BEAR_186.png'
+				
+			TabbedPanelItem:
+				text: "Gears"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_9
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch1_Graphs/Ch1_GEARS_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_9.source = 'Ch1_Graphs/Ch1_GEARS_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_9.source = 'Ch1_Graphs/Ch1_GEARS_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_9.source = 'Ch1_Graphs/Ch1_GEARS_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_9.source = 'Ch1_Graphs/Ch1_GEARS_186.png'
+	
+	TabbedPanelItem:
+		text: "Channel 3"
+		
+		Graph_Tabs:	
+			background_color: (0.2, 0.2, 0.2, 0)
+			
+			TabbedPanelItem:
+				text: "Average"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_10
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch2_Graphs/Ch2_AVG_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_10.source = 'Ch2_Graphs/Ch2_AVG_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_10.source = 'Ch2_Graphs/Ch2_AVG_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_10.source = 'Ch2_Graphs/Ch2_AVG_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_10.source = 'Ch2_Graphs/Ch2_AVG_186.png'
+								
+			TabbedPanelItem:
+				text: "Looseness"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_11
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch2_Graphs/Ch2_LOOSE_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_11.source = 'Ch2_Graphs/Ch2_LOOSE_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_11.source = 'Ch2_Graphs/Ch2_LOOSE_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_11.source = 'Ch2_Graphs/Ch2_LOOSE_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_11.source = 'Ch2_Graphs/Ch2_LOOSE_186.png'
+				
+			TabbedPanelItem:
+				text: "Misalignment"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_12
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch2_Graphs/Ch2_MISA_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_12.source = 'Ch2_Graphs/Ch2_MISA_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_12.source = 'Ch2_Graphs/Ch2_MISA_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_12.source = 'Ch2_Graphs/Ch2_MISA_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_12.source = 'Ch2_Graphs/Ch2_MISA_186.png'
+				
+			TabbedPanelItem:
+				text: "Bearing"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_13
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch2_Graphs/Ch2_BEAR_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_13.source = 'Ch2_Graphs/Ch2_BEAR_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_13.source = 'Ch2_Graphs/Ch2_BEAR_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_13.source = 'Ch2_Graphs/Ch2_BEAR_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_13.source = 'Ch2_Graphs/Ch2_BEAR_186.png'
+				
+			TabbedPanelItem:
+				text: "Gears"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_14
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch2_Graphs/Ch2_GEARS_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_14.source = 'Ch2_Graphs/Ch2_GEARS_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_14.source = 'Ch2_Graphs/Ch2_GEARS_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_14.source = 'Ch2_Graphs/Ch2_GEARS_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_14.source = 'Ch2_Graphs/Ch2_GEARS_186.png'
+				
+	TabbedPanelItem:
+		text: "Channel 4"
+		
+		Graph_Tabs:	
+			background_color: (0.2, 0.2, 0.2, 0)
+			
+			TabbedPanelItem:
+				text: "Average"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_15
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch3_Graphs/Ch3_AVG_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_15.source = 'Ch3_Graphs/Ch3_AVG_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_15.source = 'Ch3_Graphs/Ch3_AVG_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_15.source = 'Ch3_Graphs/Ch3_AVG_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_15.source = 'Ch3_Graphs/Ch3_AVG_186.png'
+								
+			TabbedPanelItem:
+				text: "Looseness"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_16
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch3_Graphs/Ch3_LOOSE_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_16.source = 'Ch3_Graphs/Ch3_LOOSE_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_16.source = 'Ch3_Graphs/Ch3_LOOSE_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_16.source = 'Ch3_Graphs/Ch3_LOOSE_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_16.source = 'Ch3_Graphs/Ch3_LOOSE_186.png'
+				
+			TabbedPanelItem:
+				text: "Misalignment"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_17
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch3_Graphs/Ch3_MISA_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_17.source = 'Ch3_Graphs/Ch3_MISA_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_17.source = 'Ch3_Graphs/Ch3_MISA_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_17.source = 'Ch3_Graphs/Ch3_MISA_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_17.source = 'Ch3_Graphs/Ch3_MISA_186.png'
+				
+			TabbedPanelItem:
+				text: "Bearing"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_18
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch3_Graphs/Ch3_BEAR_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_18.source = 'Ch3_Graphs/Ch3_BEAR_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_18.source = 'Ch3_Graphs/Ch3_BEAR_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_18.source = 'Ch3_Graphs/Ch3_BEAR_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_18.source = 'Ch3_Graphs/Ch3_BEAR_186.png'
+				
+			TabbedPanelItem:
+				text: "Gears"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_19
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch3_Graphs/Ch3_GEARS_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						
+						Button:
+							text: "Quick Read"
+							on_press:
+								#root.open_popup()
+								root.popup.open()
+						Button:
+							text: "1 Week"
+							on_press:
+								image_19.source = 'Ch3_Graphs/Ch3_GEARS_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_19.source = 'Ch3_Graphs/Ch3_GEARS_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_19.source = 'Ch3_Graphs/Ch3_GEARS_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_19.source = 'Ch3_Graphs/Ch3_GEARS_186.png'

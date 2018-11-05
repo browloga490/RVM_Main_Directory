@@ -1,0 +1,464 @@
+ #: import FadeTransition kivy.uix.screenmanager.FadeTransition
+
+<CustButton@Button>:
+	font_size: 32	
+	
+<PopupBox>:
+    oreintation: 'vertical'
+    
+    Button:
+        text: 'Run Quick Read'
+        on_press: root.quick_read()
+        
+    Button:
+        text: 'Close'
+        on_press: root.popup.dismiss()
+    
+<CustomPopup>:
+    size_hint: .5, .5
+    auto_dismiss: False
+    title: "The Popup"
+    content: 
+        BoxLayout:
+			Button:
+			text: 'Run Quick Read'
+			on_press: root.quick_read()
+	
+		Button:
+			text: 'Close'
+			on_press: root.popup.dismiss()
+
+
+<Button>:
+	font_size: 25
+		
+<Channel_1>:	
+	BoxLayout:
+		orientation: 'vertical'
+		pos_hint: {'left': 1,'top':1}
+		#size_hint: 1,1
+		Image:
+			id: image
+			pos_hint: {'top':1}
+			size_hint: 1,0.9
+			canvas.before:
+				Color:
+					rgba: 0, 0, 0, 1
+				Rectangle:
+					pos: self.pos
+					size: self.size
+			source: 'Ch0_Graphs/Ch0_AVG_7.png'
+			mag_filter: 'nearest'
+	
+		BoxLayout:
+			#pos_hint: {'bottom':1}
+			size_hint: 1,0.1
+			Button:
+				text: "1 Week"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_7.png'
+			Button:
+				text: "1 Month"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_31.png'
+			Button:
+				text: "3 Months"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_93.png'
+			Button:
+				text: "6 Months"
+				on_press:
+					image.source = 'Ch0_Graphs/Ch0_AVG_186.png'
+					
+<Channel_2>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+<Channel_3>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+<Channel_4>:
+	ScreenOne:
+		name: "screen_one"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'right': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "--->"
+				on_press:
+					root.transition.direction = "left"
+					root.transition.duration = 0.5
+					root.current = 'screen_two'
+	ScreenTwo:
+		name: "screen_two"
+		FloatLayout: #Change back to BoxLayout when the other elements are added
+			Button:
+				pos_hint: {'left': 1,'center_y': 0.5}
+				size_hint: (0.1, 0.2)
+				text: "<---"
+				on_press:
+					root.transition.direction = "right"
+					root.transition.duration = 0.5
+					root.current = 'screen_one'
+					
+Channel_Tabs:
+
+	canvas.before:
+        Color:
+            rgba: 0.15, 0.15, 0.15, 1
+        Rectangle:
+            pos: self.pos
+            size: self.size
+			
+    background_color: (0.2, 0.2, 0.2, 0)
+	
+	TabbedPanelItem:
+		text: "Channel 1"
+		
+		Graph_Tabs:	
+			background_color: (0.2, 0.2, 0.2, 0)
+			
+			TabbedPanelItem:
+				text: "Average"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_0
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_AVG_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						Button:
+							text: "1 Week"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_31.png'
+						Button:
+							text: "Quick Read"
+							size_hint: .5, 1
+							on_press:
+								root.open_popup()
+						Button:
+							text: "3 Months"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_0.source = 'Ch0_Graphs/Ch0_AVG_186.png'
+								
+			TabbedPanelItem:
+				text: "Looseness"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_1
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_LOOSE_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						Button:
+							text: "1 Week"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_1.source = 'Ch0_Graphs/Ch0_LOOSE_186.png'
+				
+			TabbedPanelItem:
+				text: "Misalignment"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_2
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_MISA_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						Button:
+							text: "1 Week"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_2.source = 'Ch0_Graphs/Ch0_MISA_186.png'
+				
+			TabbedPanelItem:
+				text: "Bearing"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_3
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_BEAR_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						Button:
+							text: "1 Week"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_3.source = 'Ch0_Graphs/Ch0_BEAR_186.png'
+				
+			TabbedPanelItem:
+				text: "Gears"
+				
+				BoxLayout:
+					orientation: 'vertical'
+					pos_hint: {'left': 1,'top':1}
+					#size_hint: 1,1
+					Image:
+						id: image_4
+						pos_hint: {'top':1}
+						size_hint: 1,0.9
+						canvas.before:
+							Color:
+								rgba: 0, 0, 0, 1
+							Rectangle:
+								pos: self.pos
+								size: self.size
+						source: 'Ch0_Graphs/Ch0_GEARS_7.png'
+						mag_filter: 'nearest'
+				
+					BoxLayout:
+						#pos_hint: {'bottom':1}
+						size_hint: 1,0.1
+						Button:
+							text: "1 Week"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_7.png'
+						Button:
+							text: "1 Month"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_31.png'
+						Button:
+							text: "3 Months"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_93.png'
+						Button:
+							text: "6 Months"
+							on_press:
+								image_4.source = 'Ch0_Graphs/Ch0_GEARS_186.png'
+
+	TabbedPanelItem:
+		text: "Channel 2"
+		
+		BoxLayout:
+			orientation: "vertical"
+			spacing: 20
+			
+			Channel_2:
+	
+	TabbedPanelItem:
+		text: "Channel 3"
+		
+		BoxLayout:
+			orientation: "vertical"
+			spacing: 20
+			
+			Channel_3:
+				
+	TabbedPanelItem:
+		text: "Channel 4"
+		
+		BoxLayout:
+			orientation: "vertical"
+			spacing: 20
+			
+			Channel_4:				
+
+			
+#	TabbedPanelItem:
+#		text: "Other"
+#		
+#		OptGridLayout:
+#			id: opt
+#			display: entry
+#			cols: 2
+#			padding: 10
+#			spacing: 10
+#	
+#			BoxLayout:
+#				orientation: "vertical"
+#				padding: 20
+#				spacing: 40
+#				
+#				Button:
+#					background_normal: ''
+#					background_color: 1, 0, 0, .85
+#					text: "First"
+#					on_press: image.source = 'image1.jpg'
+#					
+#				Button:
+#					background_normal: ''
+#					background_color: 1, 0, 0, .85
+#					text: "Second"
+#					on_press: image.source = 'image2.jpg'
+#					
+#				Button:
+#					background_normal: ''
+#					background_color: 1, 0, 0, .85
+#					text: "Third"
+#					on_press: image.source = 'image3.jpg'
+#					
+#				Button:
+#					background_normal: ''
+#					background_color: 1, 0, 0, .85
+#					text: "Fourth"
+#					on_press: image.source = 'image4.jpg'
+#					
+#			BoxLayout:
+#				orientation: "vertical"
+#				spacing: 20
+#				
+#				Image:
+#					canvas.before:
+#						Color:
+#							rgba: 0, 1, 1, 1
+#						RoundedRectangle:
+#							pos: self.pos
+#							size: self.size
+#					id: image
+#					size_hint: 1,1
+#					#size: 24, 24
+#					source: 'image1.jpg'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
